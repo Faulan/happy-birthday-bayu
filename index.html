@@ -97,6 +97,7 @@
         .flame {
             animation: flameGlow 0.8s infinite ease-in-out;
             transform-origin: center bottom;
+            transition: opacity 0.5s ease, transform 0.5s ease;
         }
 
         /* Floating Element Keyframes */
@@ -107,16 +108,6 @@
 
         .animate-float {
             animation: floatSlow 4s ease-in-out infinite;
-        }
-
-        /* Envelope Unfold CSS */
-        .envelope-wrapper {
-            perspective: 1000px;
-        }
-        
-        .envelope {
-            transition: transform 0.6s ease;
-            transform-style: preserve-3d;
         }
 
         /* Glowing text effect */
@@ -172,6 +163,7 @@
             </p>
         </section>
 
+        <!-- Interactive Cake & Candle Section -->
         <section class="glass-card rounded-3xl p-6 sm:p-10 text-center space-y-8 relative overflow-hidden">
             <div class="absolute -top-10 -right-10 w-40 h-40 bg-rose-500/10 rounded-full blur-3xl pointer-events-none"></div>
             
@@ -218,7 +210,7 @@
                 <div class="w-72 h-4 bg-slate-300/80 rounded-full shadow-2xl border-t border-white"></div>
             </div>
 
-            <!-- Blow Status Message -->
+            <!-- Blow Status Button / Message -->
             <div id="wishStatus" class="min-h-[50px] flex items-center justify-center">
                 <button onclick="blowCandles()" class="bg-gradient-to-r from-rose-500 to-pink-600 hover:from-rose-600 hover:to-pink-700 text-white font-semibold px-6 py-3 rounded-full shadow-lg shadow-rose-500/30 transform hover:-translate-y-0.5 active:translate-y-0 transition-all text-sm sm:text-base">
                     ✨ Klik Disini Untuk Tiup Lilin! ✨
@@ -226,6 +218,7 @@
             </div>
         </section>
 
+        <!-- Special Love Letter Section -->
         <section class="space-y-6">
             <div class="text-center">
                 <h2 class="text-2xl sm:text-3xl font-bold text-rose-200">💌 Surat Spesial Dari Faulan</h2>
@@ -244,10 +237,10 @@
                     </div>
 
                     <!-- Revealed Letter Content -->
-                    <div id="letterContent" class="hidden space-y-6 text-left p-2 sm:p-4 text-slate-800 glass-card-light rounded-2xl shadow-2xl transition-all duration-700 animate-fade-in">
+                    <div id="letterContent" class="hidden space-y-6 text-left p-2 sm:p-4 text-slate-800 glass-card-light rounded-2xl shadow-2xl transition-all duration-700">
                         <div class="flex justify-between items-center border-b border-rose-200 pb-3">
                             <span class="font-cursive text-2xl text-rose-600 font-bold">Untuk Bayu Sukma Kelana,</span>
-                            <span class="text-xs text-slate-500 font-mono">19 September 2026</span>
+                            <span class="text-xs text-slate-500 font-mono">20 September 2026</span>
                         </div>
 
                         <div class="space-y-4 text-sm sm:text-base leading-relaxed font-sans text-slate-700">
@@ -283,6 +276,7 @@
             </div>
         </section>
 
+        <!-- Commitment Cards Section -->
         <section class="space-y-6">
             <div class="text-center space-y-2">
                 <h2 class="text-2xl sm:text-3xl font-bold text-rose-200">💖 Papan Komitmen & Harapan Cinta</h2>
@@ -336,6 +330,7 @@
             </div>
         </section>
 
+        <!-- Photo Gallery Section -->
         <section class="space-y-6">
             <div class="text-center space-y-2">
                 <h2 class="text-2xl sm:text-3xl font-bold text-rose-200">📸 Momen Manis Faulan & Bayu</h2>
@@ -343,7 +338,6 @@
             </div>
 
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-                
                 <!-- Polaroid 1 -->
                 <div class="bg-white p-4 rounded-lg shadow-xl transform -rotate-2 hover:rotate-0 transition-transform duration-300 hover:scale-105 cursor-pointer">
                     <div class="h-52 bg-gradient-to-tr from-rose-200 via-pink-100 to-amber-100 rounded flex items-center justify-center overflow-hidden relative group">
@@ -367,7 +361,7 @@
                         </div>
                     </div>
                     <div class="pt-3 text-center">
-                        <p class="font-cursive text-xl text-slate-800">Saling Menggenggam Errat</p>
+                        <p class="font-cursive text-xl text-slate-800">Saling Menggenggam Erat</p>
                         <p class="text-[10px] text-slate-500">Momen Indah #2</p>
                     </div>
                 </div>
@@ -382,13 +376,13 @@
                     </div>
                     <div class="pt-3 text-center">
                         <p class="font-cursive text-xl text-slate-800">Bayu Sukma Kelana & Faulan</p>
-                        <p class="text-[10px] text-slate-500">19 September 2026</p>
+                        <p class="text-[10px] text-slate-500">20 September 2026</p>
                     </div>
                 </div>
-
             </div>
         </section>
 
+        <!-- Lantern Release Section -->
         <section class="glass-card rounded-3xl p-6 sm:p-8 text-center space-y-6 relative overflow-hidden">
             <div class="space-y-2">
                 <h2 class="text-2xl sm:text-3xl font-bold text-amber-200">🏮 Terbangkan Lampion Harapan Bayu</h2>
@@ -408,6 +402,7 @@
             </div>
         </section>
 
+        <!-- Love Meter Calculator Section -->
         <section class="glass-card rounded-3xl p-6 sm:p-8 text-center space-y-6">
             <div class="space-y-2">
                 <h2 class="text-2xl sm:text-3xl font-bold text-rose-200">💘 Mini Love Meter Faulan & Bayu</h2>
@@ -443,7 +438,7 @@
     </main>
 
     <script>
-        // State management variables
+        // Global variables & state
         let isCandleBlown = false;
         let isAudioPlaying = false;
         let synth = null;
@@ -517,33 +512,43 @@
         initHearts();
         animateHearts();
 
-        // Candle Blowing function
+        // FIXED Candle Blowing function
         function blowCandles() {
             if (isCandleBlown) return;
             isCandleBlown = true;
 
+            // 1. Hide Flames Visual
             const flames = document.querySelectorAll('.flame');
             flames.forEach(flame => {
                 flame.style.opacity = '0';
                 flame.style.transform = 'scale(0)';
             });
 
-            // Trigger Confetti explosion
-            confetti({
-                particleCount: 150,
-                spread: 90,
-                origin: { y: 0.6 }
-            });
+            // 2. Fire Confetti Explosion
+            if (typeof confetti === 'function') {
+                confetti({
+                    particleCount: 150,
+                    spread: 90,
+                    origin: { y: 0.6 }
+                });
+            }
 
-            // Play Birthday Synth Jingle if Tone is active
-            playBirthdayMelody();
+            // 3. Play Birthday Synth Jingle safely without crashing execution
+            try {
+                playBirthdayMelody();
+            } catch (e) {
+                console.log('Audio autoplay prevented:', e);
+            }
 
+            // 4. Update Wish Status Display
             const status = document.getElementById('wishStatus');
-            status.innerHTML = `
-                <div class="p-4 bg-amber-500/20 border border-amber-400/40 rounded-2xl text-amber-200 font-bold text-sm sm:text-base animate-pulse">
-                    ✨ YAY! Lilin berhasil ditiup! Semoga semua doa Bayu Sukma Kelana terkabul! 🥳💖
-                </div>
-            `;
+            if (status) {
+                status.innerHTML = `
+                    <div class="p-4 bg-amber-500/20 border border-amber-400/40 rounded-2xl text-amber-200 font-bold text-sm sm:text-base animate-bounce">
+                        ✨ YAY! Lilin berhasil ditiup! Semoga semua doa Bayu Sukma Kelana terkabul! 🥳💖
+                    </div>
+                `;
+            }
         }
 
         // Open Love Letter
@@ -554,11 +559,13 @@
             closedUI.classList.add('hidden');
             letter.classList.remove('hidden');
 
-            confetti({
-                particleCount: 50,
-                spread: 60,
-                origin: { y: 0.5 }
-            });
+            if (typeof confetti === 'function') {
+                confetti({
+                    particleCount: 50,
+                    spread: 60,
+                    origin: { y: 0.5 }
+                });
+            }
         }
 
         // Toggle Pledge Card Approval
@@ -609,11 +616,13 @@
 
             input.value = '';
 
-            confetti({
-                particleCount: 30,
-                spread: 40,
-                origin: { y: 0.8 }
-            });
+            if (typeof confetti === 'function') {
+                confetti({
+                    particleCount: 30,
+                    spread: 40,
+                    origin: { y: 0.8 }
+                });
+            }
         }
 
         // Calculate Love Meter
@@ -635,11 +644,13 @@
                 if (width >= 100) {
                     clearInterval(interval);
                     result.classList.remove('hidden');
-                    confetti({
-                        particleCount: 100,
-                        spread: 70,
-                        origin: { y: 0.7 }
-                    });
+                    if (typeof confetti === 'function') {
+                        confetti({
+                            particleCount: 100,
+                            spread: 70,
+                            origin: { y: 0.7 }
+                        });
+                    }
                 }
             }, 40);
         }
@@ -649,27 +660,32 @@
             const icon = document.getElementById('musicIcon');
             const text = document.getElementById('musicText');
 
-            if (!isAudioPlaying) {
-                await Tone.start();
-                if (!synth) {
-                    synth = new Tone.PolySynth(Tone.Synth).toDestination();
-                    synth.volume.value = -12;
-                }
+            try {
+                if (!isAudioPlaying) {
+                    await Tone.start();
+                    if (!synth) {
+                        synth = new Tone.PolySynth(Tone.Synth).toDestination();
+                        synth.volume.value = -12;
+                    }
 
-                playBackgroundLoop();
-                isAudioPlaying = true;
-                icon.className = 'fa-solid fa-pause text-rose-400';
-                text.innerText = 'Hentikan Musik';
-            } else {
-                Tone.Transport.stop();
-                Tone.Transport.cancel();
-                isAudioPlaying = false;
-                icon.className = 'fa-solid fa-music text-rose-400';
-                text.innerText = 'Putar Musik Romantis';
+                    playBackgroundLoop();
+                    isAudioPlaying = true;
+                    icon.className = 'fa-solid fa-pause text-rose-400';
+                    text.innerText = 'Hentikan Musik';
+                } else {
+                    Tone.Transport.stop();
+                    Tone.Transport.cancel();
+                    isAudioPlaying = false;
+                    icon.className = 'fa-solid fa-music text-rose-400';
+                    text.innerText = 'Putar Musik Romantis';
+                }
+            } catch (e) {
+                console.log('Audio execution error:', e);
             }
         }
 
         function playBirthdayMelody() {
+            if (typeof Tone === 'undefined') return;
             if (!synth) {
                 synth = new Tone.PolySynth(Tone.Synth).toDestination();
                 synth.volume.value = -10;
@@ -684,6 +700,7 @@
         }
 
         function playBackgroundLoop() {
+            if (typeof Tone === 'undefined') return;
             const notes = ["C4", "E4", "G4", "B4", "A4", "F4", "C5", "G4"];
             let index = 0;
 
